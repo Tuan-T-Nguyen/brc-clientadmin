@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -6,14 +7,13 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import ColorSwitcher from './components/common/ColorSwitcher';
 import NotificationContainer from './components/common/react-notifications/NotificationContainer';
-import { isMultiColorActive } from './constants/defaultValues';
 import main from './views';
 import app from './views/app';
 import user from './views/user';
 import error from './views/error';
 
+// eslint-disable-next-line no-shadow
 const AuthRoute = ({ component: Component, authUser, ...rest }) => (
   <Route
     {...rest}
@@ -38,9 +38,8 @@ class App extends Component {
 
     return (
       <div className="h-100">
-        <React.Fragment>
+        <>
           <NotificationContainer />
-          {isMultiColorActive && <ColorSwitcher />}
           <Router>
             <Switch>
               <AuthRoute path="/app" authUser={loginUser} component={app} />
@@ -50,7 +49,7 @@ class App extends Component {
               <Redirect to="/error" />
             </Switch>
           </Router>
-        </React.Fragment>
+        </>
       </div>
     );
   }

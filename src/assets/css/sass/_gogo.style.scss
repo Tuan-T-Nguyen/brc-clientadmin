@@ -3463,200 +3463,200 @@ div[data-notify='container'] {
   border-color: $separator-color;
 }
 
-.invalid-feedback {
-  border-radius: $border-radius;
-  padding: 0.5rem 1rem;
-  font-size: 0.76rem;
-  color: $primary-color;
-  background: $foreground-color;
-  border: 1px solid $theme-color-1;
-  text-align: center;
-  width: unset !important;
-  position: absolute;
-  z-index: 1;
-  margin-top: -0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  @include depth(1);
+// .invalid-feedback {
+//   border-radius: $border-radius;
+//   padding: 0.5rem 1rem;
+//   font-size: 0.76rem;
+//   color: $primary-color;
+//   background: $foreground-color;
+//   border: 1px solid $theme-color-1;
+//   text-align: center;
+//   width: unset !important;
+//   position: absolute;
+//   z-index: 1;
+//   margin-top: -0.5rem;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   @include depth(1);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -2.5px;
-    margin-left: 50%;
-    width: 10px;
-    height: 5px;
-    border-bottom: solid 5px $theme-color-1;
-    border-left: solid 5px transparent;
-    border-right: solid 5px transparent;
-  }
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: -5px;
+//     left: -2.5px;
+//     margin-left: 50%;
+//     width: 10px;
+//     height: 5px;
+//     border-bottom: solid 5px $theme-color-1;
+//     border-left: solid 5px transparent;
+//     border-right: solid 5px transparent;
+//   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -2.5px;
-    margin-left: 50%;
-    width: 10px;
-    height: 5px;
-    border-bottom: solid 5px $foreground-color;
-    border-left: solid 5px transparent;
-    border-right: solid 5px transparent;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: -4px;
+//     left: -2.5px;
+//     margin-left: 50%;
+//     width: 10px;
+//     height: 5px;
+//     border-bottom: solid 5px $foreground-color;
+//     border-left: solid 5px transparent;
+//     border-right: solid 5px transparent;
+//   }
+// }
 
-.tooltip-right-bottom .invalid-feedback {
-  left: initial;
-  right: 0;
-  transform: translateX(0);
+// .tooltip-right-bottom .invalid-feedback {
+//   left: initial;
+//   right: 0;
+//   transform: translateX(0);
 
-  &::before,
-  &::after {
-    left: initial;
-    right: 25px;
-    margin-left: 0;
-  }
-}
+//   &::before,
+//   &::after {
+//     left: initial;
+//     right: 25px;
+//     margin-left: 0;
+//   }
+// }
 
-.tooltip-left-bottom .invalid-feedback {
-  left: 0;
-  right: initial;
-  transform: translateX(0);
+// .tooltip-left-bottom .invalid-feedback {
+//   left: 0;
+//   right: initial;
+//   transform: translateX(0);
 
-  &::before,
-  &::after {
-    left: 25px;
-    right: initial;
-    margin-left: 0;
-  }
-}
+//   &::before,
+//   &::after {
+//     left: 25px;
+//     right: initial;
+//     margin-left: 0;
+//   }
+// }
 
-.tooltip-center-top .invalid-feedback {
-  bottom: 80%;
-  transform: translateX(-50%) translateY(50%);
-  top: initial;
+// .tooltip-center-top .invalid-feedback {
+//   bottom: 80%;
+//   transform: translateX(-50%) translateY(50%);
+//   top: initial;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -5px;
-    border-top: solid 5px $theme-color-1;
-    border-bottom: initial;
-  }
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -5px;
+//     border-top: solid 5px $theme-color-1;
+//     border-bottom: initial;
+//   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -4px;
-    border-top: solid 5px $foreground-color;
-    border-bottom: initial;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -4px;
+//     border-top: solid 5px $foreground-color;
+//     border-bottom: initial;
+//   }
+// }
 
-.tooltip-right-top .invalid-feedback {
-  bottom: 80%;
-  transform: translateX(0) translateY(50%);
-  top: initial;
-  left: initial;
-  right: 0;
+// .tooltip-right-top .invalid-feedback {
+//   bottom: 80%;
+//   transform: translateX(0) translateY(50%);
+//   top: initial;
+//   left: initial;
+//   right: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -5px;
-    border-top: solid 5px $theme-color-1;
-    border-bottom: initial;
-    left: initial;
-    right: 25px;
-    margin-left: 0;
-  }
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -5px;
+//     border-top: solid 5px $theme-color-1;
+//     border-bottom: initial;
+//     left: initial;
+//     right: 25px;
+//     margin-left: 0;
+//   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -4px;
-    border-top: solid 5px $foreground-color;
-    border-bottom: initial;
-    left: initial;
-    right: 25px;
-    margin-left: 0;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -4px;
+//     border-top: solid 5px $foreground-color;
+//     border-bottom: initial;
+//     left: initial;
+//     right: 25px;
+//     margin-left: 0;
+//   }
+// }
 
-.tooltip-left-top .invalid-feedback {
-  bottom: 80%;
-  transform: translateX(0) translateY(50%);
-  top: initial;
-  left: 0;
-  right: initial;
+// .tooltip-left-top .invalid-feedback {
+//   bottom: 80%;
+//   transform: translateX(0) translateY(50%);
+//   top: initial;
+//   left: 0;
+//   right: initial;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -5px;
-    border-top: solid 5px $theme-color-1;
-    border-bottom: initial;
-    left: 25px;
-    right: initial;
-    margin-left: 0;
-  }
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -5px;
+//     border-top: solid 5px $theme-color-1;
+//     border-bottom: initial;
+//     left: 25px;
+//     right: initial;
+//     margin-left: 0;
+//   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: initial;
-    bottom: -4px;
-    border-top: solid 5px $foreground-color;
-    border-bottom: initial;
-    left: 25px;
-    right: initial;
-    margin-left: 0;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     bottom: -4px;
+//     border-top: solid 5px $foreground-color;
+//     border-bottom: initial;
+//     left: 25px;
+//     right: initial;
+//     margin-left: 0;
+//   }
+// }
 
-.tooltip-label-right .invalid-feedback {
-  transform: translateX(0) translateY(-50%);
-  top: 16px;
-  left: 50px;
+// .tooltip-label-right .invalid-feedback {
+//   transform: translateX(0) translateY(-50%);
+//   top: 16px;
+//   left: 50px;
 
-  &::before {
-    content: '';
-    position: absolute;
-    left: -5px;
-    right: initial;
-    margin-left: 0;
-    border: initial;
-    border-top: solid 5px transparent;
-    border-bottom: solid 5px transparent;
-    border-right: solid 5px $theme-color-1;
-    bottom: initial;
-    top: 12px;
-    width: 5px;
-  }
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     left: -5px;
+//     right: initial;
+//     margin-left: 0;
+//     border: initial;
+//     border-top: solid 5px transparent;
+//     border-bottom: solid 5px transparent;
+//     border-right: solid 5px $theme-color-1;
+//     bottom: initial;
+//     top: 12px;
+//     width: 5px;
+//   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: initial;
-    left: -4px;
-    right: initial;
-    margin-left: 0;
-    width: 5px;
-    border: initial;
-    border-top: solid 5px transparent;
-    border-bottom: solid 5px transparent;
-    border-right: solid 5px $foreground-color;
-    bottom: initial;
-    top: 12px;
-    width: 5px;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: initial;
+//     left: -4px;
+//     right: initial;
+//     margin-left: 0;
+//     width: 5px;
+//     border: initial;
+//     border-top: solid 5px transparent;
+//     border-bottom: solid 5px transparent;
+//     border-right: solid 5px $foreground-color;
+//     bottom: initial;
+//     top: 12px;
+//     width: 5px;
+//   }
+// }
 
 .error-l-0 .invalid-feedback {
   left: 0px;

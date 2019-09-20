@@ -1,28 +1,31 @@
 import {
-    LOGIN_USER,
-    LOGIN_USER_SUCCESS,
-    REGISTER_USER,
-    REGISTER_USER_SUCCESS,
-    LOGOUT_USER
+  LOGIN_USER,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_ERROR,
+  LOGOUT_USER
 } from '../actions';
 
 const INIT_STATE = {
-    user: localStorage.getItem('user_id'),
-    loading: false
+  user: localStorage.getItem('token'),
+  loading: false,
+  error: false
 };
 
 export default (state = INIT_STATE, action) => {
-    switch (action.type) {
-        case LOGIN_USER:
-            return { ...state, loading: true };
-        case LOGIN_USER_SUCCESS:
-            return { ...state, loading: false, user: action.payload };
-        case REGISTER_USER:
-            return { ...state, loading: true };
-        case REGISTER_USER_SUCCESS:
-            return { ...state, loading: false, user: action.payload.uid };
-        case LOGOUT_USER:
-            return { ...state ,user:null};
-        default: return { ...state };
-    }
-}
+  switch (action.type) {
+    case LOGIN_USER:
+      return { ...state, loading: true };
+    case LOGIN_USER_SUCCESS:
+      return { ...state, loading: false, user: action.payload, error: false };
+    case LOGIN_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+    case LOGOUT_USER:
+      return { ...state, user: null };
+    default:
+      return { ...state };
+  }
+};

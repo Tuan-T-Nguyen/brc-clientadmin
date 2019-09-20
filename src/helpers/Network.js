@@ -33,7 +33,9 @@ class Network {
   static async requestHttp(method, uri, params, bearerToken) {
     const headers = {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Cache-Control': 'private, no-cache, no-store, must-revalidate',
+      Pragma: 'no-cache'
     };
     if (bearerToken) {
       headers.Authorization = `Bearer ${bearerToken}`;
@@ -52,10 +54,10 @@ class Network {
     } catch (error) {
       let errorMsg = '';
       if (error.response) {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          window.location.reload();
-        }
+        // if (error.response.status === 401) {
+        //   localStorage.clear();
+        //   window.location.reload();
+        // }
         return {
           statusCode: error.response.status,
           body: error.response.data
@@ -96,10 +98,10 @@ class Network {
     } catch (error) {
       let errorMsg = '';
       if (error.response) {
-        if (error.response.status === 401) {
-          localStorage.clear();
-          window.location.reload();
-        }
+        // if (error.response.status === 401) {
+        //   localStorage.clear();
+        //   window.location.reload();
+        // }
         return {
           statusCode: error.response.status,
           body: error.response.data

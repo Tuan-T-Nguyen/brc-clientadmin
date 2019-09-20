@@ -18,7 +18,11 @@ export const loginUserError = () => ({
   payload: {}
 });
 
-export const logoutUser = history => ({
-  type: LOGOUT_USER,
-  payload: { history }
-});
+export const logoutUser = history => {
+  localStorage.removeItem('token');
+  history.push('/');
+  return {
+    type: LOGOUT_USER,
+    payload: { history }
+  };
+};

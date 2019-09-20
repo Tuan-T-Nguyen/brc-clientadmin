@@ -34,6 +34,7 @@ class TopNav extends Component {
       searchKeyword: ''
     };
   }
+
   isInFullScreen = () => {
     return (
       (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -44,6 +45,7 @@ class TopNav extends Component {
       (document.msFullscreenElement && document.msFullscreenElement !== null)
     );
   };
+
   handleSearchIconClick = e => {
     if (window.innerWidth < menuHiddenBreakpoint) {
       let elem = e.target;
@@ -69,9 +71,11 @@ class TopNav extends Component {
       this.search();
     }
   };
+
   addEventsSearch = () => {
     document.addEventListener('click', this.handleDocumentClickSearch, true);
   };
+
   removeEventsSearch = () => {
     document.removeEventListener('click', this.handleDocumentClickSearch, true);
   };
@@ -105,11 +109,13 @@ class TopNav extends Component {
       });
     }
   };
+
   handleSearchInputChange = e => {
     this.setState({
       searchKeyword: e.target.value
     });
   };
+
   handleSearchInputKeyPress = e => {
     if (e.key === 'Enter') {
       this.search();
@@ -117,7 +123,9 @@ class TopNav extends Component {
   };
 
   search = () => {
-    this.props.history.push(searchPath + '/' + this.state.searchKeyword);
+    const { history } = this.props;
+    const { searchKeyword } = this.state;
+    history.push(`${searchPath}/${searchKeyword}`);
     this.setState({
       searchKeyword: ''
     });
@@ -126,7 +134,7 @@ class TopNav extends Component {
   toggleFullScreen = () => {
     const isInFullScreen = this.isInFullScreen();
 
-    var docElm = document.documentElement;
+    const docElm = document.documentElement;
     if (!isInFullScreen) {
       if (docElm.requestFullscreen) {
         docElm.requestFullscreen();
@@ -137,16 +145,14 @@ class TopNav extends Component {
       } else if (docElm.msRequestFullscreen) {
         docElm.msRequestFullscreen();
       }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
     this.setState({
       isInFullScreen: !isInFullScreen
@@ -154,6 +160,7 @@ class TopNav extends Component {
   };
 
   handleLogout = () => {
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.logoutUser(this.props.history);
   };
 
@@ -161,23 +168,28 @@ class TopNav extends Component {
     e.preventDefault();
 
     setTimeout(() => {
-      var event = document.createEvent('HTMLEvents');
+      const event = document.createEvent('HTMLEvents');
       event.initEvent('resize', false, false);
       window.dispatchEvent(event);
     }, 350);
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.setContainerClassnames(
       ++menuClickCount,
       containerClassnames,
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.selectedMenuHasSubItems
     );
   };
+
   mobileMenuButtonClick = (e, containerClassnames) => {
     e.preventDefault();
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.clickOnMobileMenu(containerClassnames);
   };
 
   render() {
     const { containerClassnames, menuClickCount, t } = this.props;
+    const { searchKeyword, isInFullScreen } = this.state;
     return (
       <nav className="navbar fixed-top">
         <NavLink
@@ -202,7 +214,7 @@ class TopNav extends Component {
             name="searchKeyword"
             id="searchKeyword"
             placeholder={t('menu.search')}
-            value={this.state.searchKeyword}
+            value={searchKeyword}
             onChange={e => this.handleSearchInputChange(e)}
             onKeyPress={e => this.handleSearchInputKeyPress(e)}
           />
@@ -228,7 +240,7 @@ class TopNav extends Component {
               id="fullScreenButton"
               onClick={this.toggleFullScreen}
             >
-              {this.state.isInFullScreen ? (
+              {isInFullScreen ? (
                 <i className="simple-icon-size-actual d-block" />
               ) : (
                 <i className="simple-icon-size-fullscreen d-block" />

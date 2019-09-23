@@ -3,7 +3,7 @@ import Network from '../helpers/Network';
 
 export const apiGetCategoryList = async () => {
   const response = await Network.requestGet(
-    'category',
+    'categories',
     localStorage.getItem('token')
   );
   if (response.statusCode === 200) {

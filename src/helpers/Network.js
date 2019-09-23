@@ -45,7 +45,11 @@ class Network {
         method,
         url: END_POINT + uri,
         data: JSON.stringify(params),
-        headers
+        headers,
+        auth: {
+          username: 'tuannguyen',
+          password: '$apr1$HV30SyiB$mTBfePeAKX4ou85ed9GKB1'
+        }
       });
       return {
         statusCode: response.status,

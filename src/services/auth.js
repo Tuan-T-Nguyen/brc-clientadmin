@@ -5,6 +5,14 @@ export const isSignIned = () => {
   return token && token.length > 0;
 };
 
+export const storeToken = token => {
+  localStorage.setItem('token', JSON.stringify(token));
+};
+
+export const clearToken = () => {
+  localStorage.removeItem('token');
+};
+
 export const apiAdminLogin = async (email, password) => {
   const response = await Network.requestPost('auth/admin-login', {
     email,

@@ -9,14 +9,16 @@ function* loginWithEmailPassword({ payload }) {
   const { history } = payload;
   try {
     const response = yield call(apiAdminLogin, email, password);
-    if (response.statusCode === 200) {
-      localStorage.setItem('token', response.body.token.accessToken);
-      yield put(loginUserSuccess(response.body.user));
+    console.log(response);
+    if (response.status) {
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      yield put(loginUserSuccess(response.data.user));
       history.push('/');
     } else {
       yield put(loginUserError());
     }
   } catch (error) {
+    console.log(error);
     yield put(loginUserError());
   }
 }

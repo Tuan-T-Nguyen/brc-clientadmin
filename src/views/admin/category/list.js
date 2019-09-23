@@ -67,53 +67,54 @@ class CategoryList extends Component {
           <Colxx xxs="12">
             <div className="mb-2">
               <h1>{t('menu.todo')}</h1>
-            </div>
-            {loading && errorGetList && (
-              <div className="float-sm-right">
-                <Button
-                  color="primary"
-                  size="lg"
-                  className="top-right-button"
-                  onClick={this.toggleModal}
-                >
-                  {t('title.add-new')}
-                </Button>{' '}
-                <ButtonDropdown
-                  isOpen={this.state.dropdownSplitOpen}
-                  toggle={this.toggleSplit}
-                >
-                  <div className="btn btn-primary pl-4 pr-0 check-button check-all">
-                    <CustomInput
-                      className="custom-checkbox mb-0 d-inline-block"
-                      type="checkbox"
-                      id="checkAll"
-                      checked={selectedItems.length >= categories.length}
-                      onClick={() => this.handleChangeSelectAll()}
-                      onChange={() => this.handleChangeSelectAll()}
-                      label={
-                        <span
-                          className={`custom-control-label ${
-                            selectedItems.length > 0 &&
-                            selectedItems.length < categories.length
-                              ? 'indeterminate'
-                              : ''
-                          }`}
-                        />
-                      }
-                    />
-                  </div>
-                  <DropdownToggle
-                    caret
+              {loading && errorGetList && (
+                <div className="float-sm-right">
+                  <Button
                     color="primary"
-                    className="dropdown-toggle-split pl-2 pr-2"
-                  />
-                  <DropdownMenu right>
-                    <DropdownItem>{t('title.action')}</DropdownItem>
-                    <DropdownItem>{t('title.another-action')}</DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </div>
-            )}
+                    size="lg"
+                    className="top-right-button"
+                    onClick={this.toggleModal}
+                  >
+                    {t('title.add-new')}
+                  </Button>{' '}
+                  <ButtonDropdown
+                    isOpen={this.state.dropdownSplitOpen}
+                    toggle={this.toggleSplit}
+                  >
+                    <div className="btn btn-primary pl-4 pr-0 check-button check-all">
+                      <CustomInput
+                        className="custom-checkbox mb-0 d-inline-block"
+                        type="checkbox"
+                        id="checkAll"
+                        checked={selectedItems.length >= categories.length}
+                        onClick={() => this.handleChangeSelectAll()}
+                        onChange={() => this.handleChangeSelectAll()}
+                        label={
+                          <span
+                            className={`custom-control-label ${
+                              selectedItems.length > 0 &&
+                              selectedItems.length < categories.length
+                                ? 'indeterminate'
+                                : ''
+                            }`}
+                          />
+                        }
+                      />
+                    </div>
+                    <DropdownToggle
+                      caret
+                      color="primary"
+                      className="dropdown-toggle-split pl-2 pr-2"
+                    />
+                    <DropdownMenu right>
+                      <DropdownItem>{t('title.action')}</DropdownItem>
+                      <DropdownItem>{t('title.another-action')}</DropdownItem>
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
+              )}
+              <Breadcrumb match={this.props.match} />
+            </div>
           </Colxx>
         </Row>
       </>

@@ -1,7 +1,7 @@
-import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import second from "./second";
+import second from './second';
 
 const SecondMenu = ({ match }) => (
   <div className="dashboard-wrapper">

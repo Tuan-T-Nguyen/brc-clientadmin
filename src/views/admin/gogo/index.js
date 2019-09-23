@@ -1,7 +1,7 @@
-import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import start from "./start";
+import start from './start';
 
 const Gogo = ({ match }) => (
   <div className="dashboard-wrapper">

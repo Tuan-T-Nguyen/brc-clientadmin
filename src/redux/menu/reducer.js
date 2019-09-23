@@ -23,21 +23,27 @@ const INIT_STATE = {
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
     case MENU_CHANGE_HAS_SUB_ITEM_STATUS:
-      return { ...state, selectedMenuHasSubItems: action.payload};
+      return { ...state, selectedMenuHasSubItems: action.payload };
 
     case MENU_SET_CLASSNAMES:
-      return { ...state, containerClassnames: action.payload.containerClassnames,
-        menuClickCount: action.payload.menuClickCount};
+      return {
+        ...state,
+        containerClassnames: action.payload.containerClassnames,
+        menuClickCount: action.payload.menuClickCount
+      };
 
     case MENU_CLICK_MOBILE_MENU:
-      return { ...state, containerClassnames: action.payload.containerClassnames,
-        menuClickCount: action.payload.menuClickCount};
+      return {
+        ...state,
+        containerClassnames: action.payload.containerClassnames,
+        menuClickCount: action.payload.menuClickCount
+      };
 
     case MENU_CONTAINER_ADD_CLASSNAME:
-      return { ...state, containerClassnames: action.payload};
+      return { ...state, containerClassnames: action.payload };
 
     case MENU_CHANGE_DEFAULT_CLASSES:
-      return { ...state, containerClassnames: action.payload};
+      return { ...state, containerClassnames: action.payload };
 
     default:
       return { ...state };

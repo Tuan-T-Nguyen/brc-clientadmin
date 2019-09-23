@@ -1,16 +1,11 @@
+/* eslint-disable import/prefer-default-export */
 import Network from '../helpers/Network';
 
-export const isSignIned = () => {
-  const token = localStorage.getItem('token');
-  return token && token.length > 0;
-};
-
-export const apiAdminLogin = async (email, password) => {
-  const response = await Network.requestPost('auth/admin-login', {
-    email,
-    password,
-    role: 'admin'
-  });
+export const apiGetCategoryList = async () => {
+  const response = await Network.requestGet(
+    'category',
+    localStorage.getItem('token')
+  );
   if (response.statusCode === 200) {
     if (!response.body.message) {
       return {

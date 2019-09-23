@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import NotificationContainer from './components/common/react-notifications/NotificationContainer';
 import main from './views';
-import app from './views/app';
+import admin from './views/admin';
 import user from './views/user';
 import error from './views/error';
 
@@ -42,7 +42,7 @@ class App extends Component {
           <NotificationContainer />
           <Router>
             <Switch>
-              <AuthRoute path="/app" authUser={loginUser} component={app} />
+              <AuthRoute path="/admin" authUser={loginUser} component={admin} />
               <Route path="/user" component={user} />
               <Route path="/error" exact component={error} />
               <Route path="/" exact component={main} />

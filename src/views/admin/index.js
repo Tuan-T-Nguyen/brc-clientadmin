@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import AppLayout from "../../layout/AppLayout";
-import gogo from "./gogo";
-import secondMenu from "./second-menu";
-import blankPage from "./blank-page";
+import AppLayout from '../../layout/AppLayout';
+import gogo from './gogo';
+import secondMenu from './second-menu';
+import blankPage from './blank-page';
+import category from './category';
 
 class App extends Component {
   render() {
@@ -14,10 +15,11 @@ class App extends Component {
     return (
       <AppLayout>
         <Switch>
-        <Redirect exact from={`${match.url}/`} to={`${match.url}/gogo`} />
+          <Redirect exact from={`${match.url}/`} to={`${match.url}/gogo`} />
           <Route path={`${match.url}/gogo`} component={gogo} />
           <Route path={`${match.url}/second-menu`} component={secondMenu} />
           <Route path={`${match.url}/blank-page`} component={blankPage} />
+          <Route path={`${match.url}/category`} component={category} />
           <Redirect to="/error" />
         </Switch>
       </AppLayout>

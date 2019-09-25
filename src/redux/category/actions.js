@@ -13,7 +13,7 @@ export const getCategoryList = () => ({
 
 export const getCategoryListSuccess = categories => ({
   type: CATEGORY_GET_LIST_SUCCESS,
-  payload: { categories }
+  payload: categories
 });
 
 export const getCategoryListError = error => ({

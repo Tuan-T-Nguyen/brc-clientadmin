@@ -9,7 +9,20 @@ const INIT_STATE = {
   categories: [],
   loading: false,
   errorGetList: false,
-  selectedItem: []
+  selectedItems: [],
+  orderColumn: null,
+  searchKeyword: '',
+  labels: [
+    { label: 'EDUCATION', color: 'secondary' },
+    { label: 'NEW FRAMEWORK', color: 'primary' },
+    { label: 'PERSONAL', color: 'info' }
+  ],
+  orderColumns: [
+    { column: 'title', label: 'Title' },
+    { column: 'category', label: 'Category' },
+    { column: 'status', label: 'Status' },
+    { column: 'label', label: 'Label' }
+  ]
 };
 
 export default (state = INIT_STATE, action) => {

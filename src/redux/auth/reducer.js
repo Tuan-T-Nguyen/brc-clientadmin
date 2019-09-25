@@ -6,7 +6,7 @@ import {
 } from '../actions';
 
 const INIT_STATE = {
-  user: localStorage.getItem('token'),
+  user: localStorage.getItem('accessToken'),
   loading: false,
   error: false
 };

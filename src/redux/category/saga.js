@@ -8,7 +8,7 @@ function* getCategoryList() {
   try {
     const response = yield call(apiGetCategoryList);
     if (response.status) {
-      yield put(getCategoryListSuccess(response));
+      yield put(getCategoryListSuccess(response.data));
     } else {
       yield put(
         getCategoryListError({

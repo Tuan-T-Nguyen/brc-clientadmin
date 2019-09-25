@@ -22,7 +22,7 @@ export const firebaseConfig = {
 };
 
 /** SERVER */
-export const END_POINT = 'http://127.0.0.1:3001/v1/';
+export const END_POINT = 'http://127.0.0.1:3001/v1';
 export const searchPath = '/app/pages/search';
 export const servicePath = 'https://api.coloredstrategies.com';
 

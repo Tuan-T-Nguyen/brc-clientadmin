@@ -5,6 +5,10 @@ import {
   LOGOUT_USER
 } from '../actions';
 
+import LocalStorageService from '../../helpers/LocalStorageService';
+
+const localStorageService = LocalStorageService.getService();
+
 export const loginUser = (user, history) => ({
   type: LOGIN_USER,
   payload: { user, history }
@@ -19,7 +23,7 @@ export const loginUserError = () => ({
 });
 
 export const logoutUser = history => {
-  localStorage.removeItem('token');
+  localStorageService.clearToken();
   history.push('/');
   return {
     type: LOGOUT_USER,

@@ -1,16 +1,8 @@
 import Network from '../helpers/Network';
 
 export const isSignIned = () => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('accessToken');
   return token && token.length > 0;
-};
-
-export const storeToken = token => {
-  localStorage.setItem('token', JSON.stringify(token));
-};
-
-export const clearToken = () => {
-  localStorage.removeItem('token');
 };
 
 export const apiAdminLogin = async (email, password) => {

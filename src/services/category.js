@@ -16,5 +16,39 @@ export const apiGetCategoryList = async () => {
       msg: response.body.message
     };
   }
-  return response;
+  return {
+    status: false,
+    msg: response.body.message
+  };
+};
+
+export const apiCreateCategory = async values => {
+  const { englishName, vietnamName, type } = values;
+  const response = await Network.requestPost(
+    'categories',
+    {
+      englishName,
+      vietnamName,
+      type
+    },
+    true
+  );
+
+  if (response.statusCode === 200) {
+    if (!response.body.message) {
+      return {
+        status: true,
+        msg: '',
+        data: response.body
+      };
+    }
+    return {
+      status: false,
+      msg: response.body.message
+    };
+  }
+  return {
+    status: false,
+    msg: response.body.message
+  };
 };

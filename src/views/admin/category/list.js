@@ -16,7 +16,12 @@ import { withTranslation } from 'react-i18next';
 import CategoryListItem from './CategoryListItem';
 import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
 import Breadcrumb from '../../../containers/navs/Breadcrumb';
-import { getCategoryList } from '../../../redux/actions';
+import CategoryApplicationMenu from './CategoryApplicationMenu';
+import AddNewCategoryModal from './AddNewCategoryModal';
+import {
+  getCategoryList,
+  getCategoryListWithOrder
+} from '../../../redux/actions';
 
 class CategoryList extends Component {
   constructor(props) {
@@ -53,10 +58,14 @@ class CategoryList extends Component {
     }));
   };
 
+  changeOrderBy = column => {
+    this.props.getCategoryListWithOrder(column);
+  };
+
   render() {
     const { t } = this.props;
     const {
-      categories,
+      reduceCategories,
       loading,
       selectedItems,
       errorGetList,
@@ -70,7 +79,7 @@ class CategoryList extends Component {
         <Row className="app-row survey-app">
           <Colxx xxs="12">
             <div className="mb-2">
-              <h1>{t('menu.todo')}</h1>
+              <h1>{t('menu.category')}</h1>
               {!loading && !errorGetList && (
                 <div className="float-sm-right">
                   <Button
@@ -90,14 +99,16 @@ class CategoryList extends Component {
                         className="custom-checkbox mb-0 d-inline-block"
                         type="checkbox"
                         id="checkAll"
-                        checked={selectedItems.length >= categories.length}
+                        checked={
+                          selectedItems.length >= reduceCategories.length
+                        }
                         onClick={() => this.handleChangeSelectAll()}
                         onChange={() => this.handleChangeSelectAll()}
                         label={
                           <span
                             className={`custom-control-label ${
                               selectedItems.length > 0 &&
-                              selectedItems.length < categories.length
+                              selectedItems.length < reduceCategories.length
                                 ? 'indeterminate'
                                 : ''
                             }`}
@@ -117,7 +128,7 @@ class CategoryList extends Component {
                   </ButtonDropdown>
                 </div>
               )}
-              <Breadcrumb match={this.props.match} />
+              <Breadcrumb match={this.props.match} t={t} />
             </div>
 
             <div className="mb-2">
@@ -137,8 +148,9 @@ class CategoryList extends Component {
                 <div className="d-block mb-2 d-md-inline-block">
                   <UncontrolledDropdown className="mr-1 float-md-left btn-group mb-1">
                     <DropdownToggle caret color="outline-dark" size="xs">
-                      {t('todo.orderby')}
-                      {orderColumn ? orderColumn.label : ''}
+                      {`${t('title.orderby')} ${
+                        orderColumn ? orderColumn.label : ''
+                      }`}
                     </DropdownToggle>
                     <DropdownMenu>
                       {orderColumns.map((o, index) => {
@@ -169,9 +181,9 @@ class CategoryList extends Component {
             <Separator className="mb-5" />
             <Row>
               {!loading ? (
-                categories.map((item, index) => (
+                reduceCategories.map(item => (
                   <CategoryListItem
-                    key={`category_item_${index}`}
+                    key={item.id}
                     item={item}
                     handleCheckChange={this.handleCheckChange}
                     isSelected={
@@ -183,6 +195,11 @@ class CategoryList extends Component {
                 <div className="loading" />
               )}
             </Row>
+            {!loading && <CategoryApplicationMenu />}
+            <AddNewCategoryModal
+              toggleModal={this.toggleModal}
+              modalOpen={modalOpen}
+            />
           </Colxx>
         </Row>
       </>
@@ -195,7 +212,8 @@ const mapStateToProps = ({ categoryRedux }) => {
 };
 
 const mapActionToProps = {
-  getCategoryList
+  getCategoryList,
+  getCategoryListWithOrder
 };
 
 export default withTranslation()(

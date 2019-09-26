@@ -24,5 +24,8 @@ export const apiAdminLogin = async (email, password) => {
       msg: response.body.message
     };
   }
-  return response;
+  return {
+    status: false,
+    msg: response.body.message
+  };
 };

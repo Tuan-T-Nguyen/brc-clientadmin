@@ -1,9 +1,10 @@
 import {
-  CATEGORY_AUTO_GENERATE,
   CATEGORY_GET_LIST,
   CATEGORY_GET_LIST_SUCCESS,
   CATEGORY_GET_LIST_ERROR,
-  CATEGORY_SELECTED_ITEMS_CHANGE
+  CATEGORY_SELECTED_ITEMS_CHANGE,
+  CATEGORY_GET_LIST_WITH_FILTER,
+  CATEGORY_GET_LIST_WITH_ORDER
 } from '../actions';
 
 export const getCategoryList = () => ({
@@ -21,12 +22,17 @@ export const getCategoryListError = error => ({
   payload: { error }
 });
 
-export const categoryAutoGenerate = () => ({
-  type: CATEGORY_AUTO_GENERATE,
-  payload: {}
-});
-
 export const selectedCategoryItemsChange = selectedItems => ({
   type: CATEGORY_SELECTED_ITEMS_CHANGE,
   payload: selectedItems
+});
+
+export const getCategoryListWithFilter = (column, value) => ({
+  type: CATEGORY_GET_LIST_WITH_FILTER,
+  payload: { column, value }
+});
+
+export const getCategoryListWithOrder = column => ({
+  type: CATEGORY_GET_LIST_WITH_ORDER,
+  payload: column
 });

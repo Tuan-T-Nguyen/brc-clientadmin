@@ -1,8 +1,7 @@
 import React from 'react';
-import { Card, CardBody, Badge, CustomInput } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-
-import { Colxx, Separator } from '../../../components/common/CustomBootstrap';
+import { Card, CardBody, Badge, CustomInput, Button } from 'reactstrap';
+import moment from 'moment';
+import { Colxx } from '../../../components/common/CustomBootstrap';
 
 const CategoryListItem = ({ item, handleCheckChange, isSelected }) => {
   return (
@@ -10,20 +9,20 @@ const CategoryListItem = ({ item, handleCheckChange, isSelected }) => {
       <Card className="card d-flex mb-3">
         <div className="d-flex flex-grow-1 min-width-zero">
           <CardBody className="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-            <NavLink
+            <div
               to="#"
               id={`toggler${item._id}`}
-              className="list-item-heading mb-0 truncate w-40 w-xs-100  mb-1 mt-1"
+              className="list-item-heading mb-0 w-30 w-xs-100  mb-1 mt-1"
             >
               <span className="align-middle d-inline-block">
                 {item.englishName}
               </span>
-            </NavLink>
-            <p className="mb-1 text-muted text-small w-15 w-xs-100">
+            </div>
+            <p className="mb-1 text-muted text-small w-25 w-xs-100">
               {item.vietnamName}
             </p>
             <p className="mb-1 text-muted text-small w-15 w-xs-100">
-              {item.createdAt}
+              {moment(item.createdAt).format('lll')}
             </p>
             <div className="w-15 w-xs-100">
               <Badge
@@ -34,6 +33,12 @@ const CategoryListItem = ({ item, handleCheckChange, isSelected }) => {
               </Badge>
             </div>
           </CardBody>
+          <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
+            <Button className="mr-2" color="secondary" size="xs">
+              <i className="iconsminds-file-edit" />
+            </Button>
+          </div>
+
           <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
             <CustomInput
               className="itemCheck mb-0"

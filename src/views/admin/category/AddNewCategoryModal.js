@@ -16,7 +16,10 @@ import { Formik, Form, Field } from 'formik';
 import { FormikRadioButtonGroup } from '../../../containers/form-validation/FormikFields';
 import { NotificationManager } from '../../../components/common/react-notifications';
 
-import { apiCreateCategory } from '../../../services/category';
+import {
+  apiCreateCategory,
+  apiUpdateCategory
+} from '../../../services/category';
 import { getCategoryList } from '../../../redux/actions';
 
 const typeOptions = [
@@ -26,12 +29,13 @@ const typeOptions = [
 
 class AddNewCategoryModal extends Component {
   handleSubmit = async values => {
-    const { t, toggleModal } = this.props;
-    const res = await apiCreateCategory(values);
-    console.log(res);
+    const { t, toggleModal, item } = this.props;
+    const res = !item
+      ? await apiCreateCategory(values)
+      : await apiUpdateCategory(item.id, values);
     if (!res.status) {
       NotificationManager.error(
-        t('category.create-error'),
+        item ? t('category.update-error') : t('category.create-error'),
         res.msg,
         3000,
         () => {},
@@ -40,7 +44,7 @@ class AddNewCategoryModal extends Component {
       );
     } else {
       NotificationManager.primary(
-        t('category.create-success'),
+        item ? t('category.update-success') : t('category.create-success'),
         '',
         3000,
         () => {},
@@ -53,7 +57,7 @@ class AddNewCategoryModal extends Component {
   };
 
   render() {
-    const { modalOpen, toggleModal, t } = this.props;
+    const { modalOpen, toggleModal, t, item } = this.props;
     const CategorySchema = Yup.object().shape({
       englishName: Yup.string().required(t('category.required-englishname')),
       vietnamName: Yup.string().required(t('category.required-vietnamname')),
@@ -68,9 +72,9 @@ class AddNewCategoryModal extends Component {
       >
         <Formik
           initialValues={{
-            englishName: '',
-            vietnamName: '',
-            type: ''
+            englishName: item ? item.englishName : '',
+            vietnamName: item ? item.vietnamName : '',
+            type: item ? item.type : ''
           }}
           validationSchema={CategorySchema}
           onSubmit={this.handleSubmit}
@@ -78,7 +82,7 @@ class AddNewCategoryModal extends Component {
           {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
             <Form>
               <ModalHeader toggle={toggleModal}>
-                {t('category.add-new')}
+                {item ? t('category.update') : t('category.add-new')}
               </ModalHeader>
               <ModalBody>
                 <FormGroup className="has-float-label mt-4">
@@ -116,7 +120,7 @@ class AddNewCategoryModal extends Component {
                     name="type"
                     id="type"
                     label="One of these please"
-                    value={values.radioGroup}
+                    value={values.type}
                     onChange={setFieldValue}
                     onBlur={setFieldTouched}
                     options={typeOptions}

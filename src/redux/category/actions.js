@@ -4,7 +4,8 @@ import {
   CATEGORY_GET_LIST_ERROR,
   CATEGORY_SELECTED_ITEMS_CHANGE,
   CATEGORY_GET_LIST_WITH_FILTER,
-  CATEGORY_GET_LIST_WITH_ORDER
+  CATEGORY_GET_LIST_WITH_ORDER,
+  CATEGORY_GET_LIST_SEARCH
 } from '../actions';
 
 export const getCategoryList = () => ({
@@ -35,4 +36,9 @@ export const getCategoryListWithFilter = (column, value) => ({
 export const getCategoryListWithOrder = column => ({
   type: CATEGORY_GET_LIST_WITH_ORDER,
   payload: column
+});
+
+export const getCategoryListSearch = keyword => ({
+  type: CATEGORY_GET_LIST_SEARCH,
+  payload: keyword
 });

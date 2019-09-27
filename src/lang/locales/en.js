@@ -101,11 +101,14 @@ export default {
     /* Category */
     'category.types': 'Types',
     'category.add-new': 'Add New Category',
+    'category.update': 'Update Category',
     'category.required-englishname': 'Please enter english name',
     'category.required-vietnamname': 'Please enter vietnam name',
     'category.required-type': 'Please choose type of category',
     'category.create-error': 'Create catetory was error',
     'category.create-success': 'Create category was successfull',
+    'category.update-error': 'Update catetory was error',
+    'category.update-success': 'Update category was successfull',
 
     /* School */
     'school.name': 'School Name',

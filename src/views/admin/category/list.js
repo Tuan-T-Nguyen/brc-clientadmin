@@ -20,7 +20,8 @@ import CategoryApplicationMenu from './CategoryApplicationMenu';
 import AddNewCategoryModal from './AddNewCategoryModal';
 import {
   getCategoryList,
-  getCategoryListWithOrder
+  getCategoryListWithOrder,
+  getCategoryListSearch
 } from '../../../redux/actions';
 
 class CategoryList extends Component {
@@ -28,6 +29,7 @@ class CategoryList extends Component {
     super(props);
 
     this.state = {
+      selectedCategory: null,
       dropdownSplitOpen: false,
       modalOpen: false,
       lastChecked: null,
@@ -48,7 +50,8 @@ class CategoryList extends Component {
 
   toggleModal = () => {
     this.setState(prevState => ({
-      modalOpen: !prevState.modalOpen
+      modalOpen: !prevState.modalOpen,
+      selectedCategory: null
     }));
   };
 
@@ -62,6 +65,20 @@ class CategoryList extends Component {
     this.props.getCategoryListWithOrder(column);
   };
 
+  toggleUpdateModal = category => {
+    this.setState(prevState => ({
+      modalOpen: !prevState.modalOpen,
+      selectedCategory: category
+    }));
+  };
+
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      // todo fix search when filter fiction, non-fiction
+      this.props.getCategoryListSearch(e.target.value);
+    }
+  };
+
   render() {
     const { t } = this.props;
     const {
@@ -73,7 +90,7 @@ class CategoryList extends Component {
       orderColumn,
       searchKeyword
     } = this.props.categoryRedux;
-    const { modalOpen } = this.state;
+    const { modalOpen, selectedCategory } = this.state;
     return (
       <>
         <Row className="app-row survey-app">
@@ -189,6 +206,7 @@ class CategoryList extends Component {
                     isSelected={
                       loading ? selectedItems.includes(item.id) : false
                     }
+                    toggleUpdateModal={this.toggleUpdateModal}
                   />
                 ))
               ) : (
@@ -199,6 +217,7 @@ class CategoryList extends Component {
             <AddNewCategoryModal
               toggleModal={this.toggleModal}
               modalOpen={modalOpen}
+              item={selectedCategory}
             />
           </Colxx>
         </Row>
@@ -213,7 +232,8 @@ const mapStateToProps = ({ categoryRedux }) => {
 
 const mapActionToProps = {
   getCategoryList,
-  getCategoryListWithOrder
+  getCategoryListWithOrder,
+  getCategoryListSearch
 };
 
 export default withTranslation()(

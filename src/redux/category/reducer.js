@@ -4,7 +4,8 @@ import {
   CATEGORY_GET_LIST_ERROR,
   CATEGORY_SELECTED_ITEMS_CHANGE,
   CATEGORY_GET_LIST_WITH_FILTER,
-  CATEGORY_GET_LIST_WITH_ORDER
+  CATEGORY_GET_LIST_WITH_ORDER,
+  CATEGORY_GET_LIST_SEARCH
 } from '../actions';
 
 const INIT_STATE = {
@@ -108,6 +109,19 @@ export default (state = INIT_STATE, action) => {
         ...state,
         reduceCategories: sortedItems,
         orderColumn: state.orderColumns.find(x => x.column === action.payload)
+      };
+    }
+    case CATEGORY_GET_LIST_SEARCH: {
+      const keyword = action.payload.toLowerCase();
+      const searchItems = state.categories.filter(
+        item =>
+          item.englishName.toLowerCase().indexOf(keyword) > -1 ||
+          item.vietnamName.toLowerCase().indexOf(keyword) > -1
+      );
+      return {
+        ...state,
+        reduceCategories: searchItems,
+        searchKeyword: action.payload
       };
     }
     default:

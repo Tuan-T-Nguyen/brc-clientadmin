@@ -3,7 +3,12 @@ import { Card, CardBody, Badge, CustomInput, Button } from 'reactstrap';
 import moment from 'moment';
 import { Colxx } from '../../../components/common/CustomBootstrap';
 
-const CategoryListItem = ({ item, handleCheckChange, isSelected }) => {
+const CategoryListItem = ({
+  item,
+  handleCheckChange,
+  isSelected,
+  toggleUpdateModal
+}) => {
   return (
     <Colxx xxs="12">
       <Card className="card d-flex mb-3">
@@ -34,7 +39,12 @@ const CategoryListItem = ({ item, handleCheckChange, isSelected }) => {
             </div>
           </CardBody>
           <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
-            <Button className="mr-2" color="secondary" size="xs">
+            <Button
+              className="mr-2"
+              color="secondary"
+              size="xs"
+              onClick={() => toggleUpdateModal(item)}
+            >
               <i className="iconsminds-file-edit" />
             </Button>
           </div>

@@ -7,6 +7,7 @@ import gogo from './gogo';
 import secondMenu from './second-menu';
 import blankPage from './blank-page';
 import category from './category';
+import author from './author';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path={`${match.url}/second-menu`} component={secondMenu} />
           <Route path={`${match.url}/blank-page`} component={blankPage} />
           <Route path={`${match.url}/category`} component={category} />
+          <Route path={`${match.url}/author`} component={author} />
           <Redirect to="/error" />
         </Switch>
       </AppLayout>

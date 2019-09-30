@@ -6,6 +6,12 @@ const data = [
     to: '/admin/category'
   },
   {
+    id: 'author',
+    icon: 'iconsminds-male-female',
+    label: 'menu.author',
+    to: '/admin/author'
+  },
+  {
     id: 'gogo',
     icon: 'iconsminds-air-balloon-1',
     label: 'menu.gogo',

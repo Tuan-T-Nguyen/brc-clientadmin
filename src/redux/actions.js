@@ -21,6 +21,12 @@ export const CATEGORY_GET_LIST_WITH_FILTER = 'CATEGORY_GET_LIST_WITH_FILTER';
 export const CATEGORY_GET_LIST_WITH_ORDER = 'CATEGORY_GET_LIST_WITH_ORDER';
 export const CATEGORY_GET_LIST_SEARCH = 'CATEGORY_GET_LIST_SEARCH';
 
+/* AUTHOR */
+export const AUTHOR_GET_PAGING_LIST = 'AUTHOR_GET_PAGING_LIST';
+export const AUTHOR_GET_PAGING_LIST_SUCCESS = 'AUTHOR_GET_PAGING_LIST_SUCCESS';
+export const AUTHOR_GET_PAGING_LIST_ERROR = 'AUTHOR_GET_PAGING_LIST_ERROR';
+
 export * from './menu/actions';
 export * from './auth/actions';
 export * from './category/actions';
+export * from './author/actions';

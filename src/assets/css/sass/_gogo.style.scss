@@ -2784,6 +2784,11 @@ main {
   object-fit: cover;
 }
 
+.card-img-left-w100 {
+  width: 100% !important;
+  max-height: 150px;
+}
+
 .card-img-right {
   width: 100%;
   border-top-right-radius: calc(0.15rem - 1px);

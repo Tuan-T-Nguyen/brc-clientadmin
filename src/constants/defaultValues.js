@@ -21,6 +21,11 @@ export const firebaseConfig = {
   messagingSenderId: '216495999563'
 };
 
+/** CONFIG */
+export const PAGE_LIMIT = 5;
+export const defaultAvatar = '/assets/img/profile-pic-l-3.jpg';
+export const DATE_FORMAT = 'YYYY-MM-DD';
+
 /** SERVER */
 export const END_POINT = 'http://127.0.0.1:3001/v1';
 export const searchPath = '/app/pages/search';

@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import Network from '../helpers/Network';
 
 export const apiGetCategoryList = async () => {
@@ -64,8 +63,6 @@ export const apiUpdateCategory = async (id, values) => {
     },
     true
   );
-  console.log(JSON.stringify(response));
-
   if (response.statusCode === 200) {
     if (!response.body.message) {
       return {

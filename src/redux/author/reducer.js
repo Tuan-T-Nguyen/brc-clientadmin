@@ -6,8 +6,10 @@ import {
 
 const INIT_STATE = {
   pagingAuthors: [],
+  pagingTotalAuthor: 0,
   pagingLoading: false,
-  pagingError: false
+  pagingError: false,
+  searchKeyword: ''
 };
 
 export default (state = INIT_STATE, action) => {
@@ -15,14 +17,22 @@ export default (state = INIT_STATE, action) => {
     case AUTHOR_GET_PAGING_LIST:
       return {
         ...state,
-        pagingLoading: true
+        pagingLoading: true,
+        searchKeyword: action.payload.searchKeyword
       };
     case AUTHOR_GET_PAGING_LIST_SUCCESS:
       return {
         ...state,
-        pagingAuthors: action.payload,
+        pagingAuthors: action.payload.data,
+        pagingTotalAuthor: action.payload.total,
         pagingLoading: false,
         pagingError: false
+      };
+    case AUTHOR_GET_PAGING_LIST_ERROR:
+      return {
+        ...state,
+        pagingLoading: false,
+        pagingError: true
       };
     default: {
       return { ...state };

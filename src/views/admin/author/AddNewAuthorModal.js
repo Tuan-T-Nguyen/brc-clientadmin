@@ -12,7 +12,7 @@ import {
   FormGroup
 } from 'reactstrap';
 import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldArray } from 'formik';
 import { FormikDatePicker } from '../../../containers/form-validation/FormikFields';
 import { NotificationManager } from '../../../components/common/react-notifications';
 
@@ -57,7 +57,9 @@ class AddNewAuthorModal extends Component {
       description: Yup.string(),
       bornDate: Yup.date(),
       dieDate: Yup.date(),
-      avatarUrls: Yup.array().of(Yup.string())
+      avatarUrls: Yup.array().of(
+        Yup.object().shape({ url: Yup.string().required() })
+      )
     });
 
     return (
@@ -73,7 +75,7 @@ class AddNewAuthorModal extends Component {
             description: item ? item.description : '',
             bornDate: item ? item.bornDate : '',
             dieDate: item ? item.dieDate : '',
-            avatarUrls: []
+            avatarUrls: [{ url: 'https://picsum.photos/id/1027/200/300' }]
           }}
           validationSchema={AuthorSchema}
           onSubmit={this.handleSubmit}
@@ -122,6 +124,54 @@ class AddNewAuthorModal extends Component {
                     </div>
                   ) : null}
                 </FormGroup>
+
+                <FieldArray
+                  name="avatarUrls"
+                  render={({ insert, remove, push }) => (
+                    <div>
+                      {values.avatarUrls.length > 0 &&
+                        values.avatarUrls.map((avatarUrl, index) => (
+                          <div className="row" key={index}>
+                            <div className="col">
+                              <label htmlFor={`avatarUrls.${index}.url`}>
+                                Name
+                              </label>
+                              <Field
+                                name={`avatarUrls.${index}.url`}
+                                placeholder="Jane Doe"
+                                type="text"
+                              />
+                              {errors.avatarUrls &&
+                                errors.avatarUrls[index] &&
+                                errors.avatarUrls[index].url &&
+                                touched.avatarUrls &&
+                                touched.avatarUrls[index].url && (
+                                  <div className="field-error">
+                                    {errors.avatarUrls[index].url}
+                                  </div>
+                                )}
+                            </div>
+                            <div className="col">
+                              <button
+                                type="button"
+                                className="secondary"
+                                onClick={() => remove(index)}
+                              >
+                                X
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() => push({ url: '' })}
+                      >
+                        Add Friend
+                      </button>
+                    </div>
+                  )}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color="secondary" outline onClick={toggleModal}>
